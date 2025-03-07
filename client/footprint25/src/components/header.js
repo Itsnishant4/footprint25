@@ -2,6 +2,7 @@ import React from 'react'
 
 function Header() {
   return (
+
     <div>
       <header className="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
     <h1 className="text-xl font-bold">My Website</h1>
