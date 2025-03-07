@@ -3,9 +3,9 @@ import React from 'react'
 function Header() {
   return (
     <div>
-        <h1 classname="header bg-gray-50">
+        <p classname="header bg-gray-50 text-3xl font-bold p-4">
             footprint25
-        </h1>
+        </p>
 
     </div>
   )
