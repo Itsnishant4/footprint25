@@ -6,12 +6,24 @@ function Main() {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
+        deletsession();
+    }, []);
+
+    useEffect(() => {
         const storedMessages = sessionStorage.getItem("chatMessages");
-        sessionStorage.removeItem("chatMessages");
         if (storedMessages) {
             setMessages(JSON.parse(storedMessages));
         }
     }, []);
+
+    async function deletsession(){
+        await sleep(2000)
+        await sessionStorage.removeItem("chatMessages");
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     async function handleSend() {
         if (message.trim()) {
@@ -29,7 +41,7 @@ function Main() {
                 body: JSON.stringify({ m: message }),
             });
             const data = await response.json();
-            const user_id = sessionStorage.getItem("name");
+            const user_id = localStorage.getItem("id");
 
             if (data.id) {
                 await fetch("http://127.0.0.1:8000/d", {
@@ -42,7 +54,7 @@ function Main() {
     }
 
     async function getMessages() {
-        const user_id = sessionStorage.getItem("name");
+        const user_id = localStorage.getItem("id");
         const result = await fetch("http://127.0.0.1:8000/w", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -57,7 +69,7 @@ function Main() {
                 return {
                     id: msg.id,
                     text: msg.msg,
-                    type: msg.id === sessionStorage.getItem("id") ? "user" : "bot",
+                    type: msg.id === localStorage.getItem("id") ? "user" : "bot",
                     delete_at: deleteAt,
                 };
             });
@@ -77,18 +89,19 @@ function Main() {
     }, [messages]);
 
     useEffect(() => {
-        if (!sessionStorage.getItem("name")) {
+        const g = localStorage.getItem("id");
+        if (!g) {
             window.open("/?pg=name", "_self");
         } else {
             getMessages();
-            const interval = setInterval(getMessages, 1000);
+            const interval = setInterval(getMessages, 2000);
             return () => clearInterval(interval);
         }
     }, []);
 
     return (
         <div className="flex flex-col h-screen bg-gray-900 pt-20 p-4">
-            <div className="flex flex-col gap-3 flex-grow px-4 mb-20 mx-auto md:w-[50%] md:max-w-screen-2xl max-w-lg w-full overflow-y-auto">
+            <div className="flex flex-col gap-3 flex-grow px-4 mb-20 mx-auto md:w-[50%] md:max-w-screen-2xl max-w-lg w-full overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}> 
                 {messages.map((msg, index) => (
                     <div key={msg.id} className="flex flex-col max-w-[100%]">
                         <div
