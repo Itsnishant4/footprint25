@@ -23,11 +23,21 @@ function Main() {
       });
       setMessage("");
 
-      await fetch("http://127.0.0.1:8000/m", {
+      const response = await fetch("http://127.0.0.1:8000/m", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ m: message }),
       });
+      const data = await response.json();
+      const user_id = sessionStorage.getItem("name");
+      
+      if (data.id) {
+        await fetch("http://127.0.0.1:8000/d", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ d: user_id, m: data.id }),
+        });
+      }
     }
   }
 
@@ -69,6 +79,12 @@ function Main() {
       const interval = setInterval(getMessages, 1000);
       return () => clearInterval(interval);
     }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem("chatMessages");
+    };
   }, []);
 
   return (

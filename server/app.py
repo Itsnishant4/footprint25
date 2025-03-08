@@ -68,7 +68,7 @@ def m():
         return jsonify({"error": "m cannot be empty"}), 400
     msg_collection.insert_one({"msg": m, "id" : gid , "timestamp": datetime.utcnow()})
 
-    return jsonify({"msg": m })
+    return jsonify({"msg": m , "id" : gid })
 
 @app.route('/w', methods=['POST'])
 def w():
