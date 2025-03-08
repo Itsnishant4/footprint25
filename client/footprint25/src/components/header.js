@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+const logo = "/incognito.png"
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ function Header() {
 
   return (
     <header className="bg-gradient-to-r rounded-br-[30px] rounded-bl-[30px] from-blue-500 to-purple-600 text-white p-4 shadow-md flex justify-between items-center fixed top-0 left-0 w-full z-20">
-      <h1 className="text-2xl font-bold tracking-wide">🔒 Anonymous Chat</h1>
+      <h1 className="text-2xl font-bold tracking-wide flex justify-center items-center"><img src={logo} className="w-14 mr-2"/>Anonymous Chat</h1>
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex gap-4">
