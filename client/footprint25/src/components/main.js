@@ -81,11 +81,7 @@ function Main() {
     }
   }, []);
 
-  useEffect(() => {
-    return () => {
-      sessionStorage.removeItem("chatMessages");
-    };
-  }, []);
+  
 
   return (
     <div className="flex flex-col h-screen bg-gray-900 pt-20 p-4">
