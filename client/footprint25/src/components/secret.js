@@ -12,7 +12,7 @@ function Secret() {
             const gid = urlParams.get('gid');
             if (!gid) return;
 
-            const result = await fetch(`http://127.0.0.1:8000/fetch-message/${gid}`);
+            const result = await fetch(`https://footprints25.vercel.app/fetch-message/${gid}`);
             const data = await result.json();
 
             if (data.message) {

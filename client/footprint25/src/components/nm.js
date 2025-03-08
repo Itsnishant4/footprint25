@@ -6,7 +6,7 @@ function Namee() {
     async function setSession() {
         setLoading(true);
         const secretMessage = document.getElementById("secret-message").value;
-        const result = await fetch("http://127.0.0.1:8000/id", {
+        const result = await fetch("https://footprints25.vercel.app/id", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: secretMessage })

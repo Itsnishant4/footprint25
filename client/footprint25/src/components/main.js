@@ -6,10 +6,12 @@ function Main() {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
+        sessionStorage.removeItem("chatMessages");
         deletsession();
     }, []);
 
     useEffect(() => {
+        sessionStorage.removeItem("chatMessages");
         const storedMessages = sessionStorage.getItem("chatMessages");
         if (storedMessages) {
             setMessages(JSON.parse(storedMessages));
@@ -35,7 +37,7 @@ function Main() {
             });
             setMessage("");
 
-            const response = await fetch("http://127.0.0.1:8000/m", {
+            const response = await fetch("https://footprints25.vercel.app/m", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ m: message }),
@@ -44,7 +46,7 @@ function Main() {
             const user_id = localStorage.getItem("id");
 
             if (data.id) {
-                await fetch("http://127.0.0.1:8000/d", {
+                await fetch("https://footprints25.vercel.app/d", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ d: user_id, m: data.id }),
@@ -55,7 +57,7 @@ function Main() {
 
     async function getMessages() {
         const user_id = localStorage.getItem("id");
-        const result = await fetch("http://127.0.0.1:8000/w", {
+        const result = await fetch("https://footprints25.vercel.app/w", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ d: user_id }),
