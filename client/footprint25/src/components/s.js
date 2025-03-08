@@ -29,38 +29,38 @@ function S() {
         setC(true);
         setTimeout(() => {
             setGeneratedLink('');
+            setC(false);
         }, 1000);
     }
 
     return (
-        <div className="flex justify-center items-center h-screen">
-        <div className="h-[400px] w-[350px] bg-white p-6 rounded-lg shadow-md border-black border-2 flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold mb-4 text-center">Secret Message Chat</h1>
-            <textarea id="secret-message" className="w-full h-full p-2 border rounded mb-2" placeholder="Enter your secret message..."></textarea>
-            <button onClick={generateLink} className="w-full bg-blue-500 text-white p-2 rounded-xl">
+        <div className="flex justify-center items-center h-screen bg-gray-900">
+        <div className="md:h-[400px] h-[500px] w-[350px] bg-white/20 backdrop-blur-lg m-4 p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
+            <h1 className="text-xl font-extrabold mb-5 text-center text-white drop-shadow-lg tracking-wide">Secret Message Chat</h1>
+            <textarea id="secret-message" className="w-full h-full p-3 border-none rounded-lg mb-4 text-gray-900 bg-white/80 placeholder-gray-600 focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-lg transition-all duration-300 hover:bg-white" placeholder="Enter your secret message..."></textarea>
+            <button onClick={generateLink} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white p-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:from-purple-600 hover:to-blue-500">
                 Generate One-Time Link
             </button>
             {generatedLink && (
-                <p className="mt-4 text-center text-black">
+                <div className="text-base font-extrabold mb-5 text-center text-white drop-shadow-lg tracking-wide mt-4">
                     Share this link <br/>
-                    <a target="_blank" className="text-blue-600 ">{generatedLink}</a>
+                   
+                    <a target="_blank" className="text-yellow-400 ">{generatedLink}</a>
                     <br/>
                     { !c && (
-                        <div className="mx-auto bg-blue-500 p-1 px-3 rounded-[8px] mt-[10px] font-sans font-semibold text-white flex items-center justify-center cursor-pointer " onClick={copi} id="copi">
-                
+                        <div className="mx-auto mt-4 bg-gradient-to-r from-blue-500  text-white p-2 rounded-lg font-semibold transition-all duration-300 transform hover:from-gray-600 hover:to-purple-600 flex items-center justify-center cursor-pointer " onClick={copi} id="copi">
                         <IoCopy className="mr-2"/>
                             <button>Copy Link</button>
                         </div>
                         )}
                         {c && (
-                            <div className="mx-auto bg-blue-500 p-1 px-3 rounded-[8px] mt-[10px] font-sans font-semibold text-white flex items-center justify-center cursor-pointer  ">
-                
+                            <div className="mx-auto bg-gradient-to-r from-blue-500  text-white p-2 rounded-lg font-semibold transition-all duration-300 transform hover:from-gray-600 hover:to-purple-600 flex items-center justify-center cursor-pointer  ">
                             <SiTicktick className="mr-2"/>
                                 <button>Copied!</button>
                             </div>
                         )}
+                        </div>
 
-                </p>
             )}
         </div>
         </div>
