@@ -103,7 +103,7 @@ function Main() {
 
     return (
         <div className="flex flex-col h-screen bg-gray-900 pt-20 p-4">
-            <div className="flex flex-col gap-3 flex-grow px-4 mb-20 mt-10 mx-auto md:w-[50%] md:max-w-screen-2xl max-w-lg w-full overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}> 
+            <div className="flex flex-col gap-3 flex-grow px-4 mb-20 mt-20 mx-auto md:w-[50%] md:max-w-screen-2xl max-w-lg w-full overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}> 
                 {messages.map((msg, index) => (
                     <div key={msg.id} className="flex flex-col max-w-[100%]">
                         <div
