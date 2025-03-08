@@ -48,10 +48,11 @@ function Main() {
       }));
 
       setMessages((prevMessages) => {
-        const uniqueMessages = [...prevMessages.filter(msg => msg.type === "user"), ...formattedMessages]
-          .filter((msg, index, self) => self.findIndex(m => m.id === msg.id) === index);
-        sessionStorage.setItem("chatMessages", JSON.stringify(uniqueMessages));
-        return uniqueMessages;
+        const existingIds = new Set(prevMessages.map(msg => msg.id));
+        const newMessages = formattedMessages.filter(msg => !existingIds.has(msg.id));
+        const mergedMessages = [...prevMessages, ...newMessages];
+        sessionStorage.setItem("chatMessages", JSON.stringify(mergedMessages));
+        return mergedMessages;
       });
     }
   }
@@ -73,7 +74,7 @@ function Main() {
   return (
     <div className="flex flex-col h-screen bg-gray-900 pt-20 p-4">
       <div className="flex flex-col gap-3 flex-grow px-4 mb-20 mx-auto md:w-[50%] md:max-w-screen-2xl max-w-lg w-full overflow-y-auto">
-        {messages.map((msg) => (
+        {messages.map((msg, index) => (
           <div
             key={msg.id}
             className={`max-w-[50%] px-5 py-3 rounded-xl shadow-md transition-all duration-300 ${
