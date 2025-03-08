@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 function Main() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -104,9 +103,7 @@ function Main() {
           </div>
         ))}
         <div ref={messagesEndRef} />
-        {isTyping && (
-          <div className="text-gray-400 italic text-sm self-start">Typing...</div>
-        )}
+        
       </div>
       <div className="fixed bottom-6 left-[50%] md:w-[50%] w-[95%] translate-x-[-50%] flex bg-white shadow-lg backdrop-blur-md rounded-full p-3 border border-gray-300">
         <input
@@ -117,8 +114,6 @@ function Main() {
           value={message}
           onChange={(e) => {
             setMessage(e.target.value);
-            setIsTyping(true);
-            setTimeout(() => setIsTyping(false), 1000);
           }}
           onKeyPress={(e) => e.key === "Enter" && handleSend()}
         />
