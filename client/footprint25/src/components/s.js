@@ -4,9 +4,11 @@ import { SiTicktick } from "react-icons/si";
 
 function S() {
     const [generatedLink, setGeneratedLink] = useState('');
+    const [loading, setLoading] = useState(false);
     const [c, setC] = useState(false);
     
     async function generateLink() {
+        setLoading(true);
         const secretMessage = document.getElementById('secret-message').value;
         if (!secretMessage) {
             alert("Please enter a secret message.");
@@ -21,6 +23,7 @@ function S() {
         if (data.gid) {
             const link = `${window.location.origin}/?pg=secret&gid=${data.gid}`;
             setGeneratedLink(link);
+            setLoading(false);
         }
     }
 
@@ -39,7 +42,8 @@ function S() {
             <h1 className="text-xl font-extrabold mb-5 text-center text-white drop-shadow-lg tracking-wide">Secret Message Chat</h1>
             <textarea id="secret-message" className="w-full h-full p-3 border-none rounded-lg mb-4 text-gray-900 bg-white/80 placeholder-gray-600 focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-lg transition-all duration-300 hover:bg-white" placeholder="Enter your secret message..."></textarea>
             <button onClick={generateLink} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white p-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:from-purple-600 hover:to-blue-500">
-                Generate One-Time Link
+            {loading ? <span className="loader"></span> : "Generate One-Time Link"}
+                
             </button>
             {generatedLink && (
                 <div className="text-base font-extrabold mb-5 text-center text-white drop-shadow-lg tracking-wide mt-4">
