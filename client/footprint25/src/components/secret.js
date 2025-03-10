@@ -29,7 +29,7 @@ function Secret() {
     return (
         <div className="flex justify-center items-center h-screen">
             
-        <div className="max-w-lg w-full bg-white p-6 rounded-xl shadow-md text-center border-black border-[1px]">
+        <div className="max-w-lg w-full bg-white p-6 m-2 rounded-xl shadow-md text-center border-black border-[1px]">
             <p className="text-xl font-extrabold">{message}</p>
         </div>
         </div>
