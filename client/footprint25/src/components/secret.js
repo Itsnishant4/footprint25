@@ -16,7 +16,7 @@ function Secret() {
             const data = await result.json();
 
             if (data.message) {
-                setMessage(`Secret Message: ${data.message}`);
+                setMessage(`${data.message}`);
             } else {
                 setMessage("This message has already been viewed or does not exist.");
             }
