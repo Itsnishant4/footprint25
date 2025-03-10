@@ -96,7 +96,7 @@ function Main() {
             window.open("/?pg=name", "_self");
         } else {
             getMessages();
-            const interval = setInterval(getMessages, 2000);
+            const interval = setInterval(getMessages, 5000);
             return () => clearInterval(interval);
         }
     }, []);
