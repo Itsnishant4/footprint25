@@ -6,12 +6,16 @@ from flask_cors import CORS
 from datetime import datetime, timedelta, timezone
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
+import os
+
+load_dotenv()
+secret_key = os.getenv("MG")
 
 app = Flask(__name__)
 CORS(app)  # Allow frontend to access API
 
 # MongoDB Connection
-client = MongoClient("mongodb+srv://itsnishant470:rXjIlUsnqg8kjFbm@cluster0.amgic.mongodb.net/")
+client = MongoClient(secret_key)
 db = client["messageDB"]
 collection = db["messages"]
 id_collection = db["ids"]
