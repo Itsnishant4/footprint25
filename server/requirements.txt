@@ -3,3 +3,4 @@ pymongo
 apscheduler
 flask_cors
 gunicorn
+python-dotenv
