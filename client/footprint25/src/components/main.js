@@ -6,10 +6,12 @@ function Main() {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
+        sessionStorage.removeItem("chatMessages");
         deletsession();
     }, []);
 
     useEffect(() => {
+        sessionStorage.removeItem("chatMessages");
         const storedMessages = sessionStorage.getItem("chatMessages");
         if (storedMessages) {
             setMessages(JSON.parse(storedMessages));
